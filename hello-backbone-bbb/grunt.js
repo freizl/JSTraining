@@ -77,7 +77,7 @@ module.exports = function(grunt) {
       // development file path.
       "dist/debug/index.css": {
         // Point this to where your `index.css` file is location.
-        src: "css/index.css",
+        src: "assets/css/main.css",
 
         // The relative path to use for the @imports.
         paths: ["css"],
@@ -122,7 +122,7 @@ module.exports = function(grunt) {
         folders: {
           "app": "dist/debug",
           "assets/js/libs": "dist/debug",
-          "css": "dist/debug"
+          "assets/css": "dist/debug"
         }
       },
 
