@@ -10,7 +10,9 @@ require.config(
          json2: "../assets/js/libs/json2",
          jquery: "../assets/js/libs/jquery-1.8.2",
          underscore: "../assets/js/libs/underscore",
-         backbone: "../assets/js/libs/backbone"
+         backbone: "../assets/js/libs/backbone",
+         mustache: "../assets/js/libs/mustache",
+         text: "../assets/js/libs/text"
       },
 
       shim: {

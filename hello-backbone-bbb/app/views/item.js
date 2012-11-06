@@ -2,10 +2,12 @@ define(
 [
    'jquery',
    'backbone',
-   'underscore'
+   'underscore',
+   'mustache',
+   'text!templates/item.mustache'
 ],
 
-function ($, Backbone, _) {
+function ($, Backbone, _, Mustache, template) {
 
    var ItemView = Backbone.View.extend(
       {
@@ -24,13 +26,13 @@ function ($, Backbone, _) {
          },
 
          render : function render () {
-            $(this.el).html('<span>'
-                            + this.model.get('part1')
-                            + ' => '
-                            + this.model.get('part2')
-                            + '</span>'
-                            + '<button class="swap">swap</button>'
-                            + '<button class="delete">delete</button>');
+            var data = {
+               name1: this.model.get('part1'),
+               name2: this.model.get('part2')
+            },
+            html = Mustache.to_html(template, data);
+
+            $(this.el).html(html);
             return this;
          },
 

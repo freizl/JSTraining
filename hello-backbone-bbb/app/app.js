@@ -4,10 +4,12 @@ define(
    'backbone',
    'underscore',
    'models/item',
-   'views/item'
+   'views/item',
+   'mustache',
+   'text!templates/app.mustache'
 ],
 
-function ($, Bacbbone, _, Item, ItemView) {
+function ($, Bacbbone, _, Item, ItemView, Mustache, template) {
 
    Backbone.sync = function (method, model, success, error) {
       success();
@@ -26,7 +28,7 @@ function ($, Bacbbone, _, Item, ItemView) {
          },
 
          initialize : function initialize () {
-            _.bindAll(this, 'render', 'addItem', 'appendItem'); // ??? Seems this is not required
+            _.bindAll(this, 'render', 'addItem', 'appendItem');
             this.collection = new List();
             this.collection.bind('add', this.appendItem);
 
@@ -35,17 +37,15 @@ function ($, Bacbbone, _, Item, ItemView) {
 
          render : function render () {
             var that = this;
-            $(that.el).append('<button id="add">Add list item</button>');
-            $(that.el).append('<ul><li>Hello Backbone</li></ul>');
+            $(that.el).append(Mustache.to_html(template));
          },
 
          addItem : function addItem () {
             this.counter++;
             var item = new Item();
-            item.set(
-               {
-                  part2: item.get('part2') + this.counter
-               });
+            item.set({
+                        part2: item.get('part2') + this.counter
+                     });
             this.collection.add(item);
          },
 
