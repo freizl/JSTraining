@@ -1,6 +1,6 @@
 // This example introduces two new Model actions (swap and delete), illustrating how such actions can be handled within a Model's View.
 
-;(function() {
+;(function($) {
 
 Backbone.sync = function (method, model, success, error) {
    success();
@@ -122,42 +122,3 @@ var ListView = Backbone.View.extend(
     listView = new ListView();
 
 })(jQuery);
-
-;(function ($) {
-
-     $(document).ready(
-        function () {
-           var sleepNow = Number(new Date());
-
-           console.log('Document Ready:', sleepNow);
-           console.log('Document Ready: doc.readyState ', document.readyState);
-
-           while(sleepNow + 1000>Number(new Date())) { var tmp = sleepNow; }
-           console.log('Document Ready: sleep finish', Number(new Date()) - sleepNow);
-           $('head').append('<script src="http://mustache.github.com/extras/mustache.js"></script>');
-        });
-
-     window.addEventListener("DOMContentLoaded",
-        function () {
-           var sleepNow = Number(new Date());
-
-           console.log('Document load:', sleepNow);
-
-           while(sleepNow + 1500 > Number(new Date())) { var tmp = sleepNow; }
-           console.log('Document load: sleep finish', Number(new Date()) - sleepNow);
-        });
-
-     $(window).load(
-        function () {
-           var sleepNow = Number(new Date());
-
-           console.log('Window onload:', sleepNow);
-           console.log('doc.readyState ', document.readyState);
-
-           while(sleepNow + 1000>Number(new Date())) { var tmp = sleepNow; }
-           console.log('Window onload: sleep finish', Number(new Date()) - sleepNow);
-
-
-        });
-  })(jQuery);
-

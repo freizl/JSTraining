@@ -17,7 +17,7 @@ var ListView = Backbone.View.extend(
 
       render : function render () {
          $(this.el).append('<button id="add">Add list item</button>');
-         $(this.el).append('<ul><li>Hello Backbone</li></ul>');
+         $(this.el).append('<ul><li>Hello Backbone - Script 1</li></ul>');
       },
 
 
