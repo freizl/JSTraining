@@ -89,7 +89,7 @@ var ListView = Backbone.View.extend(
       render : function render () {
          var that = this;
          $(that.el).append('<button id="add">Add list item</button>');
-         $(that.el).append('<ul><li>Hello Backbone</li></ul>');
+         $(that.el).append('<ul><li>Hello Backbone - Script 5</li></ul>');
 
          /* in case collection is not empty
           * however it is empty at this example thus ignored.
