@@ -66,24 +66,25 @@
 
 ;(function ($, W) {
 
-     $(document).ready(
+     W.addEventListener("DOMContentLoaded",
         function () {
-           console.log('>> Document Ready start');
-           console.log('Document Ready: doc.readyState ', document.readyState);
-           W.delayRun(600);
-           //$('head').append('<script src="http://mustache.github.com/extras/mustache.js"></script>');
-           console.log('Document Ready end');
-           //W.Mustache = 0;
-           // --disable-web-security
-        });
-
-     window.addEventListener("DOMContentLoaded",
-        function () {
-           console.log('>> Document content loaded start');
+           console.log('>> DOMContentLoaded start');
+           console.log('   doc.readyState %s', document.readyState);
            W.delayRun(500);
            $.getScript('https://raw.github.com/freizl/JSTraining/master/hello-backbone/3.js');
-           console.log('Document content loaded end');
+           console.log('   DOMContentLoaded end');
 
+        });
+
+     $(document).ready(
+        function () {
+           console.log('>> jquery Document Ready start');
+           console.log('   doc.readyState ', document.readyState);
+           W.delayRun(600);
+           //$('head').append('<script src="http://mustache.github.com/extras/mustache.js"></script>');
+           console.log('   jquery Document Ready end');
+           //W.Mustache = 0;
+           // --disable-web-security
         });
 
      $(document).ready(
@@ -91,9 +92,18 @@
            $.getScript('https://raw.github.com/freizl/JSTraining/master/hello-backbone/1.js');
         });
 
+     document.onreadystatechange = function () {
+        console.log('>> Document onreadystatechange start');
+        console.log('   Document readyState: %s', document.readyState);
+        console.log('   Document onreadystatechange end');
+     };
+
+
      // TODO: 1. what diff between $window.load and window.onload ??
+     //          + `jQuery.fn.load`
      //       2. diff between jquery.doc.ready and DOMContentLoaded event handler.xs
-     //       3. how $window.load and document.ready being implemented ??
+     //          + basicaly leverage DOMContentLoaded as well
+     //          + check source code for detail: `jQuery.ready.promise`
      //
      // FINDING
      // 1. response - domLoading, fast, cache makes faster, what happened here??
@@ -107,21 +117,21 @@
      // 6. domComplete - loadEventStart, loading extra *dynamic* resources; etc.
      // 7. loadEventStart - loadEventEnd, jquery.window.load; window.onload
 
-     $(window).load(
+     $(W).load(
         function () {
-           console.log('>> jquery window onload');
-           console.log('doc.readyState ', document.readyState);
+           console.log('>> jquery window load');
+           console.log('   doc.readyState ', document.readyState);
            W.delayRun(50);
-           console.log('jquery window onload');
+           console.log('   jquery window load');
 
         });
 
      W.onload = function _onload_ () {
         console.log('>> window onload function');
-        console.log('doc.readyState ', document.readyState);
+        console.log('   doc.readyState ', document.readyState);
         W.delayRun(500);
         $.getScript('https://raw.github.com/freizl/JSTraining/master/hello-backbone/4.js');
-        console.log('window onload function');
+        console.log('   window onload function');
 
      };
 
