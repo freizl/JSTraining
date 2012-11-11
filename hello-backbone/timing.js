@@ -31,6 +31,7 @@
         console.log('=========== PROCESS + LOAD TIME START');
         if (!window.performance || !window.performance.timing) return 'unsupported';
         var t = window.performance.timing;
+        console.log('requestStart => responseStart %s ms', t.responseStart - t.requestStart);
         console.log('responseStart => responseEnd %s ms', t.responseEnd - t.responseStart);
         console.log('responseEnd => domLoading %s ms', t.domLoading - t.responseEnd);
         console.log('domLoading => domInteractive %s ms', t.domInteractive - t.domLoading);
