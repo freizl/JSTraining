@@ -3,11 +3,10 @@ define(
    'jquery',
    'backbone',
    'underscore',
-   'mustache',
-   'text!templates/item.mustache'
+   'speck!templates/item'
 ],
 
-function ($, Backbone, _, Mustache, template) {
+function ($, Backbone, _, Speck) {
 
    var ItemView = Backbone.View.extend(
       {
@@ -29,10 +28,9 @@ function ($, Backbone, _, Mustache, template) {
             var data = {
                name1: this.model.get('part1'),
                name2: this.model.get('part2')
-            },
-            html = Mustache.to_html(template, data);
+            };
+            Speck.to_html(data, $(this.el));
 
-            $(this.el).html(html);
             return this;
          },
 

@@ -5,11 +5,10 @@ define(
    'underscore',
    'models/item',
    'views/item',
-   'mustache',
-   'text!templates/app.mustache'
+   'speck!templates/app'
 ],
 
-function ($, Bacbbone, _, Item, ItemView, Mustache, template) {
+function ($, Backbone, _, Item, ItemView, speck) {
 
    Backbone.sync = function (method, model, success, error) {
       success();
@@ -37,7 +36,9 @@ function ($, Bacbbone, _, Item, ItemView, Mustache, template) {
 
          render : function render () {
             var that = this;
-            $(that.el).append(Mustache.to_html(template));
+
+            speck.html({}).then($.fn.append.bind($(that.el)));
+            //$(that.el).append(speck.html({}));
          },
 
          addItem : function addItem () {

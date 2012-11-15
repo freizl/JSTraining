@@ -7,12 +7,12 @@ require.config(
 
       paths: {
          // Libraries.
-         json2: "../assets/js/libs/json2",
          jquery: "../assets/js/libs/jquery-1.8.2",
          underscore: "../assets/js/libs/underscore",
          backbone: "../assets/js/libs/backbone",
-         mustache: "../assets/js/libs/mustache",
-         text: "../assets/js/libs/text"
+         dust: "../assets/js/libs/require-dust",
+         text: "../assets/js/libs/text",
+         speck: "../assets/js/libs/speck"
       },
 
       shim: {
@@ -20,6 +20,9 @@ require.config(
          backbone: {
             deps: ["underscore", "jquery"],
             exports: "Backbone"
+         },
+         speck: {
+            deps: ["text", "dust"]
          }
 
          // Backbone.LayoutManager depends on Backbone.
