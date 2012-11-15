@@ -22,7 +22,8 @@ require.config(
             exports: "Backbone"
          },
          speck: {
-            deps: ["text", "dust"]
+            deps: ["text", "dust", "jquery", "backbone"],
+            exports: "Speck"
          }
 
          // Backbone.LayoutManager depends on Backbone.

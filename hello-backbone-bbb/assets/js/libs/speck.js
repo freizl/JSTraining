@@ -1,8 +1,14 @@
+/**
+ * NOTE: Thu Nov 15 22:59:53 2012
+ *   This plugin can work with the optimzer `r.js`.
+ *   It probably have to implement something silimar to `text.js` since it need to compile text to .js.
+ *   Therefore would not try to use this module currently but just try to use text plus dust.
+ */
 define(
 
-   ['jquery', 'backbone', 'module', 'text', 'dust'],
+   ['jquery', 'module', 'text', 'dust'],
 
-   function($, Backbone, module, text, dust) {
+   function($, module, text, dust) {
 
       var masterConfig = module.config();
 
