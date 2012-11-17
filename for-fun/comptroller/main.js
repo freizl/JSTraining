@@ -70,7 +70,7 @@ function calculate (id, items) {
                              return init;
                           }, {}),
        price = inputs.reduce(function (init, x) {
-                                return !! obj[x] ? (init + obj[x]) : init;
+                                return obj[x] > 0 ? (init + obj[x]) : init;
                              }, 0);
    return { id: id, price: price };
 }
