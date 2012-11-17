@@ -35,8 +35,7 @@ function recordHandler (data, index) {
       var id = xs[0],
           price = parseFloat(xs[1]),
           items = xs.slice(2)
-                    .map(function (y) { return y.trim(); })
-                    .map(function (y) { return {'name':y, 'price': price}; }),
+                    .map(function (y) { return {'name':y.trim(), 'price': price}; }),
           exists = store[id] ? store[id] : [];
 
       store[id] = exists.concat(items);
@@ -70,20 +69,13 @@ function calculate (id, items) {
                              init[x.name] = x.price;
                              return init;
                           }, {}),
-       inputPrices = inputs.map(function (x) { return obj[x]; })
-                           .filter(function (x) { return !!x; }),
-       price = 0;
-
-   if (inputs.length === inputPrices.length) { // be able to find price for each input item
-      price = sum(inputPrices);
-   }
+       price = inputs.reduce(function (init, x) {
+                                return !! obj[x] ? (init + obj[x]) : init;
+                             }, 0);
    return { id: id, price: price };
 }
 
 // Utils
-function sum (xs) {
-   return xs.reduce(function (x, y) { return x+y; }, 0);
-}
 
 function minWith (xs, fn) {
    if (xs.length === 1) {
