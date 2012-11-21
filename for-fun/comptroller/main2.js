@@ -23,7 +23,7 @@ csv()
  * csv record handler.
  * records has been tranformed to table (Object)
  * which key is ID, value is a list a items along with its price.
- * e.g. { "2" : [ { "foo", 11 }, { "bar" : 13 } ] }
+ * e.g. { "2" :  { "foo", 11, "bar" : 13 } }
  */
 function recordHandler (data, index) {
    var xs = data.filter(function (x) { return x && x.trim(); });
