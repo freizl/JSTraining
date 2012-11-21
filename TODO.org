@@ -1,0 +1,3 @@
+* Backbone
+  1. [ ] understand Route / History
+  2. [ ] backbone at code school 
