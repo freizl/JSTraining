@@ -12,9 +12,9 @@ define(
 
 function ($, Bacbbone, _, Mustache, template, Item, ItemView, List) {
 
-   // TODO: What's purpose of this??
-   Backbone.sync = function (method, model, success, error) {
-      success();
+   // sync list when delete a item.
+   Backbone.sync = function (method, model, options) {
+      options.success();
    };
 
    var ListView = Backbone.View.extend(
