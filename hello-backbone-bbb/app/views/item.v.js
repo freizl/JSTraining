@@ -27,6 +27,7 @@ function ($, Backbone, _, Mustache, template) {
 
          render : function render () {
             var data = {
+               id: this.model.get('id'),
                name1: this.model.get('part1'),
                name2: this.model.get('part2')
             },

@@ -3,6 +3,6 @@ require(
    'app'
 ],
 
-function (AppView) {
-   //var List = new AppView();
+function (App) {
+   App.start();
 });

@@ -7,10 +7,15 @@ define(
    'text!templates/item.list.mustache',
    'models/item.m',
    'views/item.v',
-   'models/item.list.m'
+   'collections/item.c'
 ],
 
 function ($, Bacbbone, _, Mustache, template, Item, ItemView, List) {
+
+   // TODO: What's purpose of this??
+   Backbone.sync = function (method, model, success, error) {
+      success();
+   };
 
    var ListView = Backbone.View.extend(
       {
@@ -37,9 +42,9 @@ function ($, Bacbbone, _, Mustache, template, Item, ItemView, List) {
 
          addItem : function addItem () {
             this.counter++;
-            var item = new Item();
+            var item = new Item({id: this.counter});
             item.set({
-                        part2: item.get('part2') + this.counter
+                        part2: item.get('part2') //+ this.counter
                      });
             this.collection.add(item);
          },
