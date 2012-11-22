@@ -4,10 +4,10 @@ define(
    'backbone',
    'underscore',
    'mustache',
-   'text!templates/app.mustache',
-   'models/item',
-   'views/item',
-   'models/item-list'
+   'text!templates/item.list.mustache',
+   'models/item.m',
+   'views/item.v',
+   'models/item.list.m'
 ],
 
 function ($, Bacbbone, _, Mustache, template, Item, ItemView, List) {

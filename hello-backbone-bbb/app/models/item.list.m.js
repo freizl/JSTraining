@@ -4,7 +4,7 @@ define(
    'backbone',
    'underscore',
    'mustache',
-   'models/item'
+   'models/item.m'
 ],
 
 function ($, Bacbbone, _, Mustache, Item) {

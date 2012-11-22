@@ -4,7 +4,7 @@ define(
    'backbone',
    'underscore',
    'mustache',
-   'views/item-list'
+   'views/item.list.v'
 ],
 
 function ($, Bacbbone, _, Mustache, ItemListView) {
