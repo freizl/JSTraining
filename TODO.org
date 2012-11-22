@@ -1,3 +1,4 @@
 * Backbone
   1. [ ] understand Route / History
-  2. [ ] backbone at code school 
+  2. [X] backbone at code school 
+         [[http://courseware.codeschool.com/The_Anatomy_of_BackboneJS.pdf][Slides]]

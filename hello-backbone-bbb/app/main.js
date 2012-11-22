@@ -4,5 +4,5 @@ require(
 ],
 
 function (AppView) {
-   var List = new AppView();
+   //var List = new AppView();
 });
