@@ -9,10 +9,10 @@ import java.util.List;
  */
 public final class FP {
 
-	/**
-	 * map :: (a -> b) -> [a] -> [b]
-	 * 
-	 */
+	// ============================================================
+	// map :: (a -> b) -> [a] -> [b]
+	// ============================================================
+	
 	public static <A, B> List<B> map(MapFunc<A, B> fn, List<A> xs) {
 		List<B> ys = new ArrayList<B>();
 		if (null != xs && null != fn) {
@@ -30,10 +30,11 @@ public final class FP {
 		B apply(A t1);
 	}
 
-	/**
-	 * filter :: (a -> Boolean) -> [a] -> [a]
-	 * 
-	 */
+	
+	// ============================================================
+	// filter :: (a -> Boolean) -> [a] -> [a]
+	// ============================================================
+
 	public static <A> List<A> filter(FilterFunc<A> fn, List<A> xs) {
 		List<A> ys = new ArrayList<A>();
 		if (null != xs && null != fn) {
@@ -53,9 +54,11 @@ public final class FP {
 		boolean apply(A t1);
 	}
 
-	/**
-	 * foldLeft. foldl :: (b -> a -> b) -> [a] -> b -> b
-	 */
+	
+	// ============================================================
+	// foldLeft. foldl :: (b -> a -> b) -> [a] -> b -> b
+	// ============================================================
+
 	public static <A, B> B foldl(FoldlFunc<A, B> fn, List<A> xs, B init) {
 		B re = init;
 		if (null != xs && null != fn) {

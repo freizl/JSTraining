@@ -11,6 +11,11 @@ import com.freizl.fp.FP;
 
 public class Main {
 
+	private static final HashMap<Long, Restaurant> INIT_STORE = new HashMap<Long, Restaurant>();
+	private static final ParseRecord FN_ROW_PROCESSOR = new ParseRecord();
+	private static final ReportMin FN_REPORT_MIN = new ReportMin();
+	private static final IsNotZero FN_NON_ZERO = new IsNotZero();
+
 	public static void main(String[] args) {
 		System.out.println(run(args));
 	}
@@ -30,16 +35,16 @@ public class Main {
 		List<List<String>> dataRaw = Reader.read(fileName);
 
 		// pre-processing
-		ParseRecord recordParser = new ParseRecord();
-		FP.map(recordParser, dataRaw);
-		List<Restaurant> datas = recordParser.getPreprecessedResult();
+		Map<Long, Restaurant> processed = FP.foldl(FN_ROW_PROCESSOR, dataRaw, INIT_STORE); 
+		List<Restaurant> datas = getProcessedData(processed);
 
 		// searching prices upon all restaurants.
-		List<Report> prices = FP.filter(new IsNotZero(), FP.map(new SumPrice(inputs), datas));
+		SumPrice fnSumPrice = new SumPrice(inputs);
+		List<Report> prices = FP.filter(FN_NON_ZERO, FP.map(fnSumPrice, datas));
 
+		// find the right one.
 		if (null != prices && prices.size() >= 1) {
-			// find the right one.
-			Report min = FP.foldl(new ReportMin(), prices, null);
+			Report min = FP.foldl(FN_REPORT_MIN, prices, null);
 			return min;
 		} else {
 			System.out.println("Nothing Found.");
@@ -110,43 +115,35 @@ public class Main {
 	 * Parse one record to a <code>Restaurant</code> instance.
 	 * 
 	 */
-	static class ParseRecord implements FP.MapFunc<List<String>, Restaurant> {
-
-		private Map<Long, Restaurant> datas = new HashMap<Long, Restaurant>();
-
-		public List<Restaurant> getPreprecessedResult() {
-			List<Restaurant> xs = new ArrayList<Restaurant>();
-			xs.addAll(datas.values());
-			return xs;
-		}
+	static class ParseRecord implements FP.FoldlFunc<List<String>, Map<Long, Restaurant>> {
 
 		/**
-		 * Store the pre-process result to map <code>datas</code> thus ignore
-		 * the map return result.
+		 * Process a singel record and store result to <code>datas</code>.
 		 */
 		@Override
-		public Restaurant apply(List<String> t1) {
+		public Map<Long, Restaurant> apply(Map<Long, Restaurant> datas, List<String> a) {
+			
+			if (null != a && a.size() >= 3) {
+				Map<String, Float> items = new HashMap<String, Float>();
+				Long id = Long.valueOf(a.get(0));
+				Float price = Float.valueOf(a.get(1));
+				List<String> xs = a.subList(2, a.size());
+				for (String x : xs) {
+					items.put(x, price);
+				}
 
-			if (null == t1 || t1.size() <= 2) {
-				System.err.println("Invalid record:" + t1.toString());
-				return null;
-			}
+				Restaurant exists = datas.get(id);
+				if (null != exists) {
+					exists.addItems(items);
+				} else {
+					datas.put(id, new Restaurant(id, items));
+				}
 
-			Map<String, Float> items = new HashMap<String, Float>();
-			Long id = Long.valueOf(t1.get(0));
-			Float price = Float.valueOf(t1.get(1));
-			List<String> xs = t1.subList(2, t1.size());
-			for (String x : xs) {
-				items.put(x, price);
-			}
-
-			Restaurant exists = this.datas.get(id);
-			if (null != exists) {
-				exists.addItems(items);
 			} else {
-				this.datas.put(id, new Restaurant(id, items));
+				System.err.println("Invalid record:" + a.toString());
 			}
-			return null;
+
+			return datas;
 		}
 
 	}
@@ -204,5 +201,11 @@ public class Main {
 		public boolean apply(Report a) {
 			return !Float.valueOf(0).equals(a.price);
 		}
+	}
+	
+	private static List<Restaurant> getProcessedData (Map<Long, Restaurant> xs) {
+		List<Restaurant> ys = new ArrayList<Restaurant>();
+		ys.addAll(xs.values());
+		return ys;
 	}
 }
