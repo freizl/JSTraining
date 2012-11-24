@@ -51,7 +51,7 @@ function ($, Bacbbone, _, Mustache, template, Item, ItemView, List) {
 
          appendItem : function appendItem (item) {
             var itemView = new ItemView({ model: item });
-            $('ul', this.el).append(itemView.render().el);
+            $('ul#itemList', this.el).append(itemView.render().el);
          }
 
       });

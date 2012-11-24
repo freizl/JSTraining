@@ -4,47 +4,19 @@ define(
    'backbone',
    'underscore',
    'mustache',
+   'routers',
    'views/itemcollection.v'
 ],
 
-function ($, Bacbbone, _, Mustache, ItemListView) {
+function ($, Bacbbone, _, Mustache, Router, ItemListView) {
 
+   var router = new Router({routers: {}});
+   router.on("route:test", function __onRouteTest () {
+                console.log("Event: on route test");
+             });
 
-   var Router = Backbone.Router.extend(
-      {
-         routes: { "" : "index"
-                 , "index" : "index"
-                 , "detail/:id" : "detail"
-                 , "test" : "test"
-                 },
+   //TODO: set {pushState:true} doesnt work.
+   Backbone.history.start();
 
-         // TODO: initialize will be invoked each time navigation change??
-         initialize : function () {
-            console.log("router initialize");
-         },
-
-         start : function start () {
-            Backbone.history.start({pushState:true});
-         },
-
-         index : function () {
-            console.log("index fn ");
-            this.todoListView = new ItemListView();
-         },
-
-         detail : function (id) {
-            console.log("show details of %s", id);
-            //TODO: whose reposbility to display item detail?
-            //     itemModel, itemListModel, itemView, itemListView ??
-         },
-
-         test : function () {
-           alert("test routers");
-         }
-
-
-      });
-
-   return new Router();
 });
 
