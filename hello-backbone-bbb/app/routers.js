@@ -26,12 +26,17 @@ function ($, Bacbbone, _, ItemListView) {
          index : function () {
             console.log("Router: index fn ");
             !!this.appview || (this.appview = new ItemListView());
+            this.appview.render();
          },
 
+         //TODO: whose reposbility to display item detail?
+         //     itemModel, itemListModel, itemView, itemListView ??
          detail : function (id) {
             console.log("Router: show details of %s", id);
-            //TODO: whose reposbility to display item detail?
-            //     itemModel, itemListModel, itemView, itemListView ??
+            var app = this.appview,
+                models = app && app.collection ? app.collection.models : [],
+                model = _(models).filter(function (x) { return x.get('id') == id ;})[0];
+            model && model.trigger("view-detail");
          },
 
          test : function () {

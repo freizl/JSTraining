@@ -32,12 +32,12 @@ function ($, Bacbbone, _, Mustache, template, Item, ItemView, List) {
             this.collection = new List();
             this.collection.bind('add', this.appendItem);
 
-            this.render();
          },
 
          render : function render () {
             var that = this;
-            $(that.el).append(Mustache.to_html(template));
+            $(that.el).html(Mustache.to_html(template));
+            _(that.collection.models).each( function (x) { that.appendItem(x); });
          },
 
          addItem : function addItem () {
@@ -51,8 +51,14 @@ function ($, Bacbbone, _, Mustache, template, Item, ItemView, List) {
 
          appendItem : function appendItem (item) {
             var itemView = new ItemView({ model: item });
-            $('ul#itemList', this.el).append(itemView.render().el);
+            $('#content ul', this.el).append(itemView.render().el);
+         },
+
+         findItem : function (id) {
+            var that = this,
+                models = that.collection.models;
          }
+
 
       });
 
