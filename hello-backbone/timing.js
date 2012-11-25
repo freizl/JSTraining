@@ -31,6 +31,8 @@
         console.log('=========== PROCESS + LOAD TIME START');
         if (!window.performance || !window.performance.timing) return 'unsupported';
         var t = window.performance.timing;
+        console.log('connectStart => connectEnd %s ms', t.connectEnd - t.connectStart);
+        console.log('connectEnd => requestStart %s ms', t.requestStart - t.connectEnd);
         console.log('requestStart => responseStart %s ms', t.responseStart - t.requestStart);
         console.log('responseStart => responseEnd %s ms', t.responseEnd - t.responseStart);
         console.log('responseEnd => domLoading %s ms', t.domLoading - t.responseEnd);
@@ -82,7 +84,7 @@
            console.log('>> jquery Document Ready start');
            console.log('   doc.readyState ', document.readyState);
            W.delayRun(600);
-           //$('head').append('<script src="http://mustache.github.com/extras/mustache.js"></script>');
+           $('head').append('<script src="http://mustache.github.com/extras/mustache.js"></script>');
            console.log('   jquery Document Ready end');
            //W.Mustache = 0;
            // --disable-web-security
@@ -110,7 +112,7 @@
      // 1. response - domLoading, fast, cache makes faster, what happened here??
      // 2. domLoading - domInteractive, parsing; guess doing downloading resources because cache make a lot faster.
      // 3. domInteractive - domContentLoadedEventStart, ???
-     // 4. domContentLoadedEventStart - domContentLoadedEventEnd, jquery.docReady ; DOMContentLoaded event handlers.
+     // 4. domContentLoadedEventStart - domContentLoadedEventEnd (jquery.docReady ; DOMContentLoaded event handlers)
      // 5. domContentLoadedEventEnd - domComplete, ???
      //    + set of scripts that will execute as soon as possible
      //    + the list of scripts that will execute in order as soon as possible
