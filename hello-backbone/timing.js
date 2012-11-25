@@ -1,3 +1,34 @@
+// http://stevesouders.com/cuzillion
+//
+//
+// TODO: 1. what diff between $window.load and window.onload ??
+//          + `jQuery.fn.load`
+//       2. diff between jquery.doc.ready and DOMContentLoaded event handler.xs
+//          + basicaly leverage DOMContentLoaded as well
+//          + check source code for detail: `jQuery.ready.promise`
+//
+//
+// FINDING
+// 1. response - domLoading, fast, cache makes faster, what happened here??
+// 2. domLoading - domInteractive, parsing; guess doing downloading resources because cache make a lot faster.
+// 3. domInteractive - domContentLoadedEventStart, ???
+// 4. domContentLoadedEventStart - domContentLoadedEventEnd (jquery.docReady ; DOMContentLoaded event handlers)
+// 5. domContentLoadedEventEnd - domComplete, ???
+//    + set of scripts that will execute as soon as possible
+//    + the list of scripts that will execute in order as soon as possible
+//    + delays the load event in the Document
+// 6. domComplete - loadEventStart, loading extra *dynamic* resources; etc.
+// 7. loadEventStart - loadEventEnd, jquery.window.load; window.onload
+//
+//
+// MORE
+// 1. HTML tag JavaScripts: need to be loaded and executed both in header and body
+// 2. HTML - tag - Stylesheets: will possibly loaded after DOMContentLoaded End (css1.html, css2.html)
+// 3. HTML - Body - Images: will possibly loaded after DOMContentLoaded End
+//
+// ??? Well, one thing that cant understand is when the HEADER has both JS and CSS, the loading time of CSS impact DOMContentLoaded time.
+//
+
 ;(function (W) {
      var xs = ['navigation', 'redirect', 'fetch',
                'domainLookup', 'connect', 'request', 'response',
@@ -100,25 +131,6 @@
         console.log('   Document readyState: %s', document.readyState);
         console.log('   Document onreadystatechange end');
      };
-
-
-     // TODO: 1. what diff between $window.load and window.onload ??
-     //          + `jQuery.fn.load`
-     //       2. diff between jquery.doc.ready and DOMContentLoaded event handler.xs
-     //          + basicaly leverage DOMContentLoaded as well
-     //          + check source code for detail: `jQuery.ready.promise`
-     //
-     // FINDING
-     // 1. response - domLoading, fast, cache makes faster, what happened here??
-     // 2. domLoading - domInteractive, parsing; guess doing downloading resources because cache make a lot faster.
-     // 3. domInteractive - domContentLoadedEventStart, ???
-     // 4. domContentLoadedEventStart - domContentLoadedEventEnd (jquery.docReady ; DOMContentLoaded event handlers)
-     // 5. domContentLoadedEventEnd - domComplete, ???
-     //    + set of scripts that will execute as soon as possible
-     //    + the list of scripts that will execute in order as soon as possible
-     //    + delays the load event in the Document
-     // 6. domComplete - loadEventStart, loading extra *dynamic* resources; etc.
-     // 7. loadEventStart - loadEventEnd, jquery.window.load; window.onload
 
      $(W).load(
         function () {
