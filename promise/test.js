@@ -47,25 +47,21 @@
     * 2. notice how the second _aCallback change the value chain.
     */
    function testPromise2 () {
-      var d = _aCallback(1)
-         .then(function fn1 () {
-            console.log("1", arguments);
+      return _aCallback(0)
+         .then(null, function fn1 () {
+            console.log("fail 1: ", arguments);
             // return _aCallback(1, {email: "freizl"}).then(success(20));
-            return _aCallback(1, {email: "freizl"}).done(success(20));
+            return _aCallback(1, {email: "fail one"});
          })
          .then(success(3), failure(3))
          .done(success(4))
-         .done(success(5));
-      return d;
-      //         .fail(failure(2))
-      //         .progress(progress(1))
-      //         .progress(progress(2));
-
-      //.then(function fn2 () {
-      //   return $.getScript('https://raw.github.com/freizl/JSTraining/master/hello-backbone/timing.js');
-      //})
-
-
+         .then(function fn2 () {
+            return _aCallback(0, {login: "simon"});
+         })
+         .done(success(5))
+         .fail(failure(4))
+         .progress(progress(1))
+         .progress(progress(2));
    }
 
 
