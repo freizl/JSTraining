@@ -1,16 +1,25 @@
-## JSTraining
 
 UI Innovation
+
 
 ## Cool things
 
   - [famo.us](http://famo.us/)
   - [meteor.com](http://meteor.com/)
 
-## Backbone
+## AngularJS
+
+### Make your own angular
+  - [part 1](http://teropa.info/blog/2013/11/03/make-your-own-angular-part-1-scopes-and-digest.html)
+  
+
+## BackboneJS
   - [backbone tutorials](http://backbonetutorials.com/)
   - [getting started with backbone js](http://net.tutsplus.com/tutorials/javascript-ajax/getting-started-with-backbone-js/)
   - [Developing Backbone.js Applications](http://addyosmani.github.com/backbone-fundamentals/)
+
+## Concepts 
+
   - [Understand MVC and MVP](http://addyosmani.com/blog/understanding-mvc-and-mvp-for-javascript-and-backbone-developers/)
 
 ## Tools
