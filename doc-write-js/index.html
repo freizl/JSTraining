@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<script>
+			 foo = 1000
+		  console.log("AAAAAAAAAAAAAA: ", foo)
+		</script>
+
+		<script>
+		    document.write("<script src=foo.js><\/script>")
+		 </script>
+
+		<script>
+		  console.log("BBBBBBBBBBBBBB: ", foo)
+		</script>
+
+		<script>
+		    document.write('<script async src="http://1.cuzillion.com/bin/resource.cgi?type=js&sleep=3&n=1"><\/script>')
+		 </script>
+		 <script>
+		    document.write('<script src="http://1.cuzillion.com/bin/resource.cgi?type=js&sleep=1&n=1"><\/script>')
+		 </script>
+
+
+		<script>
+			 foo = 6000
+		  console.log("CCCCCCCCCCCCCC: ", foo)
+		</script>
+
+	</head>
+
+
+	<body>
+
+
+	</body>
+</html>
