@@ -4,15 +4,15 @@
 		 // COMMENTS, how is crazy result happened?
 
 //=> AAAAAAAAAA:  1000
-//=> index2.html:13 >>>>>>>>>> docwrite a sting after A
-//=> index2.html:12 >>>>>>>>>> consolelog a sting after C <<<<<<<<<<<<
-//=> foo.js:3 START foo.js. assign foo to 2000
-//=> VM945:1 BBBBBBBBBB:  2000
-//=> foo.js:11 END foo.js
-//=> bar.js:3 START bar.js. assign foo to 40000
-//=> bar.js:5 END bar.js.
-//=> index2.html:13 CCCCCCCCCC:  40000
-//=> index2.html:25 DDDDDDDDDD:  40000
+//=> >>>>>>>>>> docwrite a sting after A
+//=> >>>>>>>>>> consolelog a sting after C <<<<<<<<<<<<
+//=> START foo.js. assign foo to 2000
+//=> BBBBBBBBBB:  2000
+//=> END foo.js
+//=> START bar.js. assign foo to 40000
+//=> END bar.js.
+//=> CCCCCCCCCC:  40000
+//=> DDDDDDDDDD:  40000
 
 		 foo = 1000
 		 console.log("AAAAAAAAAA: ", foo)
